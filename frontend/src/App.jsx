@@ -61,7 +61,6 @@ export default function App() {
     setError(null)
     setResult(null)
     setCurrentStep(0)
-    setIsPlaying(false)
 
     const params = {}
     if (selectedProblem === 'frozen_lake') params.grid_size = gridSize
@@ -70,6 +69,7 @@ export default function App() {
     try {
       const data = await runSearch(selectedProblem, selectedAlgorithm, params)
       setResult(data)
+      setIsPlaying(true)
     } catch (err) {
       setError(err.response?.data?.detail || 'Error al ejecutar la búsqueda')
     } finally {
